@@ -1,0 +1,23 @@
+{
+  "name": "simplewms",
+  "version": "1.0.0",
+  "description": "Node portion of a warehouse management system.",
+  "main": "node.js",
+  "scripts": {
+    "start": "node node.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/satyanto/simplewms.git"
+  },
+  "author": "Hafidh Satyanto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/satyanto/simplewms/issues"
+  },
+  "homepage": "https://github.com/satyanto/simplewms#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^8.5.1"
+  }
+}
