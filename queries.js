@@ -1,82 +1,62 @@
-const Pool = require('pg').Pool
+var promise = require('bluebird');
 
-const pool = new Pool({
-    user: 'postgres',
-    host: '34.70.73.36',
-    database: 'postgres',
-    password: 'pingspace',
-    port: 5432,
-})
+var options = {     // required, overrides default express's promise with bluebird library
+    promiseLib: promise
+};
 
-pool.query('SELECT NOW()', (error, response) => {
-    console.log(error, response)
-    pool.end()
-})
+var pgp = require('pg-promise')(options);
+let ssl = null;
+    ssl = {rejectUnauthorized: false};
 
-// // Get all users
-// const getUsers = (request, response) => {
-//     pool.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
-//         if (error) {
-//             throw error
-//         }
-//         response.status(200).json(results.row)
-//     })
-// }
+const config = {
+    connectionString: process.env.DATABASE_URL,
+    ssl: ssl
+}
 
-// Get a single user by ID 
-// const getUserById = (request, response) => {
-//     const id = parseInt(request.params.id)
+const db = pgp(config);
 
-//     pool.query('SELECT * FROM users WHERE id = $1', [id], (error, results) => {
-//         if (error) {
-//             throw error
-//         }
-//         response.status(200).json(results.rows)
-//     })
-// }
 
-// const createUser = (request, response) => {
-//     const { name, email } = request.body
 
-//     pool.query('INSERT INFO users (name, email) VALUES ($1, $2)', [name, email], (error, results) => {
-//         if (error) {
-//             throw error
-//         }
-//         response.status(201).send('User added with ID: ${result.insertId}')
-//     })
-// }
 
-// const updateUser = (request, response) => {
-//     const id = parseInt(request.params.id)
-//     const { name, email } = request.body
+function getIncomingShipments(req, res, next) {
+    db.any('SELECT * FROM "Shipment"').then(function (data) {
+        res.status(200).json({
+            status: 'success',
+            data: data,
+            message: 'Retrieved all shipments'
+        });
+    }).catch(function (error) {
+        return next(error);
+    })
+}
 
-//     pool.query(
-//         'UPDATE users SET name = $1, email = $2 WHERE id = $3',
-//         [name, email, id],
-//         (error, results) => {
-//             if (error) {
-//                 throw error
-//             }
-//             response.status(200).send('User modified with ID: ${id}')
-//         }
-//     )
-// }
+function getSingleShipment(req, res, next) {
+    var shipmentID = parseInt(req.params.id);
+    db.one('SELECT * FROM Shipment WHERE ID = $1', shipmentID).then(function (data) {
+        res.status(200).json({
+            status: 'success',
+            data: data,
+            message: 'Retrieved shipment from ID'
+        });
+    }).catch(function (error) {
+        return next(error);
+    })
+}
 
-// const deleteUser = (request, response) => {
-//     const id = parseInt(request.params.id)
-    
-//     pool.query('DELETE FROM users WHERE id = $1', [id], (error, results) => {
-//         if (error) {
-//             throw error
-//         }
-//         response.status(200).send('User deleted with ID: ${id}')
-//     })
-// }
+function createShipment(req, res, next) {
+    db.none('INSERT INTO Shipment(delivery_method, type, tracking' + 'values(${delivery_method}, ${type}, ${tracking})', req.body).then(function (data) {
+        res.status(200).json({
+            status: 'success',
+            data: data,
+            message: 'Inserted a shipment'
+        });
+    }).catch(function (error) {
+        return next(error);
+    })
+}
 
-// module.exports = {
-//     getUsers,
-//     getUserById,
-//     createUser,
-//     updateUser,
-//     deleteUser,
-// }
+module.exports = {
+    getIncomingShipments: getIncomingShipments,
+    getSingleShipment: getSingleShipment,
+    createShipment: createShipment
+}
