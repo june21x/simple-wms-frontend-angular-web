@@ -15,7 +15,7 @@ router.get('/', function (req, res) {
     router.use(express.static(path.join(__dirname, 'public')));
     router.set('views', path.join(__dirname, 'views'));
     router.set('view engine', 'ejs');
-    res.render('pages/home');
+    res.send("Testing!!!");
 })
 
 module.exports = router;
