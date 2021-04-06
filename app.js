@@ -5,7 +5,7 @@ var routes = require('./routes/index');
 
 const app = express()
 
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'public/views'));
 app.set('view engine', 'ejs');
 
 app.use(express.json())
@@ -27,7 +27,7 @@ app.use(function(err, req, res, next) {
   });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, () => {  // this is NEEDED to prevent crashing on Heroku... and also to listen to Angular requests
   console.log('Express server listening on port ', PORT);
 })
 
