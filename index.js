@@ -27,8 +27,8 @@ app.use(function(err, req, res, next) {
   });
 });
 
-app.listen(port, () => {
-  console.log('Express server listening on port ', port);
+app.listen(PORT, () => {
+  console.log('Express server listening on port ', PORT);
 })
 
 module.exports = app;
