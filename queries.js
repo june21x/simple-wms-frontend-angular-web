@@ -5,6 +5,7 @@ var options = {     // required, overrides default express's promise with bluebi
 };
 
 var pgp = require('pg-promise')(options);
+pgp.pg.defaults.ssl = true;
 var connectionString = process.env.DATABASE_URL;
 var db = pgp(connectionString);
 
