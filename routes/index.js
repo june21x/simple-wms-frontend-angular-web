@@ -1,5 +1,5 @@
 const express = require('express');
-// const path = require('path')
+const path = require('path')
 //const app = require('../app');
 const router = express.Router();
 var db = require('../queries');
@@ -12,10 +12,10 @@ router.post('/api/shipments', db.createShipment);
 //router.delete('/api/shipments/:id', db.removeShipment);
 
 router.get('/', function (req, res) {
-    // router.use(express.static(path.join(__dirname, 'public')));
-    // router.set('views', path.join(__dirname, 'views'));
-    // router.set('view engine', 'ejs');
-    res.render('../views/pages/home');
+    router.use(express.static(path.join(__dirname, 'public')));
+    router.set('views', path.join(__dirname, 'views'));
+    router.set('view engine', 'ejs');
+    res.render('pages/home');
 })
 
 module.exports = router;
