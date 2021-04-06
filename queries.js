@@ -19,7 +19,7 @@ const db = pgp(config);
 
 
 function getIncomingShipments(req, res, next) {
-    db.any('SELECT * FROM Shipment').then(function (data) {
+    db.any('SELECT * FROM "Shipment"').then(function (data) {
         res.status(200).json({
             status: 'success',
             data: data,
