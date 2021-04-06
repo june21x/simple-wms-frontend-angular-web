@@ -5,9 +5,18 @@ var options = {     // required, overrides default express's promise with bluebi
 };
 
 var pgp = require('pg-promise')(options);
-pgp.pg.defaults.ssl = true;
-var connectionString = process.env.DATABASE_URL;
-var db = pgp(connectionString);
+let ssl = null;
+    ssl = {rejectUnauthorized: false};
+
+const config = {
+    connectionString: process.env.DATABASE_URL,
+    ssl: ssl
+}
+
+const db = pgp(config);
+
+
+
 
 function getIncomingShipments(req, res, next) {
     db.any('SELECT * FROM Shipment').then(function (data) {
