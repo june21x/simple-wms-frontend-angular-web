@@ -17,3 +17,5 @@ router.get('/', function (req, res) {
     // router.set('view engine', 'ejs');
     res.render('../views/pages/home');
 })
+
+module.exports = router;
