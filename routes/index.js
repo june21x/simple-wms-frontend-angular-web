@@ -10,7 +10,7 @@ var db = require('../queries');
 
 router.get('/', function (req, res) {
 
-    res.render('home');
+    res.send("Hello world!");
 });
 
 module.exports = router;
