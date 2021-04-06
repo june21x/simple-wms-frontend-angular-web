@@ -15,13 +15,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 
 app.use(function(req, res, next) {
-  var error = new Error('Not Found');
-  error.status = 404;
-  next(error);
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 })
 
 app.use(function(err, req, res, next) {
-  res.status(erro.status || 500).json({
+  res.status(err.status || 500).json({
     status: 'error',
     message: err.message
   });

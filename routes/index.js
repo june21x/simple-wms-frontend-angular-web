@@ -9,8 +9,7 @@ var db = require('../queries');
 //router.delete('/api/shipments/:id', db.removeShipment);
 
 router.get('/', function (req, res) {
-
-    res.send("Hello world!");
+    res.send(true);
 });
 
 module.exports = router;
