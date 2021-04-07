@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../queries');
+var db = require('../server/queries');
 
 router.get('/api/shipments', db.getIncomingShipments);
 router.get('/api/shipments/:id', db.getSingleShipment);
