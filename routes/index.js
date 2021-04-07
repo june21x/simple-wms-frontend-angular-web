@@ -1,12 +1,12 @@
 var express = require("express");
 var router = express.Router();
-var db = require('../server/queries');
+var db = require('../server/database');
 
 
 var ctrlTestCrypto = require("../controllers/test.controller");
 
 //test
-router.get('/shipments', db.getIncomingShipments);
+router.get('/orders', db.getAllOrders);
 
 // router
 //   .route("/test")
