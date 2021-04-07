@@ -1,7 +1,11 @@
 {
   "name": "simplewms",
-  "version": "0.3",
-  "license": "MIT",
+  "version": "1.0.0",
+  "description": "Node portion of a warehouse management system.",
+  "main": "app.js",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng build && node app.js",
