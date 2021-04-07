@@ -5,14 +5,15 @@ var routes = require('./routes/index');
 
 const app = express()
 
-app.set('views', path.join(__dirname, 'public/views'));
+//app.set
+// app.set('views', path.join(__dirname, 'public/views'));
 app.set('view engine', 'ejs');
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+app.use(express.static(__dirname + '/app'), routes);
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
