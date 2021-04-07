@@ -9,7 +9,7 @@ router.post('/api/shipments', db.createShipment);
 //router.delete('/api/shipments/:id', db.removeShipment);
 
 router.get('/', function (req, res) {
-    res.sendFile('/client/src/index.html', {root: __dirname});
+    res.sendFile('../client/src/index.html', {root: __dirname});
 });
 
 module.exports = router;
