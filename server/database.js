@@ -11,7 +11,7 @@ const knex = Knex({
 
 Model.knex(knex);
 
-module.exports = Model
+module.exports = { ObjectionModel: Model }
 
 
 

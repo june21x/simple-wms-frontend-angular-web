@@ -1,6 +1,6 @@
-const { Model } = require('../database');
+var database = require('../database');
 
-class Order extends Model {
+class Order extends database.ObjectionModel {
 
     static get tableName() {
         return 'Order';
@@ -12,6 +12,4 @@ class Order extends Model {
 
 }
 
-module.exports = {
-    Order
-}
+module.exports = Order
