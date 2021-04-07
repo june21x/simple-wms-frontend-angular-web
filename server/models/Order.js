@@ -1,4 +1,4 @@
-const { Model } = require('objection');
+const { Model } = require('../database');
 
 class Order extends Model {
 

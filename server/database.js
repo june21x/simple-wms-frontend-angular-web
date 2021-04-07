@@ -11,9 +11,7 @@ const knex = Knex({
 
 Model.knex(knex);
 
-module.exports = {
-    Model, Knex
-}
+module.exports = Model
 
 
 
