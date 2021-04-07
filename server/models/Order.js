@@ -12,4 +12,4 @@ class Order extends database.ObjectionModel {
 
 }
 
-module.exports = Order
+export { Order };
