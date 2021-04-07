@@ -1,7 +1,7 @@
 const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000   // currently listens on the environment port (or 5000 otherwise) -- connect to this port to connect to Angular
-var routes = require('./routes/index');
+var routes = require(__dirname + '/routes/index');
 
 const app = express()
 

@@ -8,7 +8,7 @@ router.post('/api/shipments', db.createShipment);
 //router.put('/api/shipments/:id', db.updateShipment);
 //router.delete('/api/shipments/:id', db.removeShipment);
 
-router.use('/', function (req, res) {
+router.get('/', function (req, res) {
     res.sendFile('/client/src/index.html', {root: __dirname});
 });
 
