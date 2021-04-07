@@ -1,17 +1,12 @@
-const express = require('express');
-const router = express.Router();
-const db = require('../server/queries');
-const path = require('path')
+var express = require("express");
+var router = express.Router();
+//var db = require('../')
 
-router.get('/api/shipments', db.getIncomingShipments);
-router.get('/api/shipments/:id', db.getSingleShipment);
-router.post('/api/shipments', db.createShipment);
-//router.put('/api/shipments/:id', db.updateShipment);
-//router.delete('/api/shipments/:id', db.removeShipment);
+var ctrlTestCrypto = require("../controllers/test.controller");
 
-router.get('/', function (req, res) {
-    res.sendFile(path.resolve('../client/src/index.html'));
-    // res.sendFile('../client/src/index.html', {root: __dirname});
-});
+//test
+router
+  .route("/test")
+    .get(ctrlTestCrypto.testTestCrypto)
 
 module.exports = router;
