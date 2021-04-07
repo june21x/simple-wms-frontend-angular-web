@@ -11,28 +11,31 @@ const knex = Knex({
 
 Model.knex(knex);
 
-class Order extends Model {
-    static get tableName() {
-        return 'Order';
-    }
-
-    static get idColumn() {
-        return 'id';
-    }
+module.exports = {
+    Model, Knex
 }
 
-async function getAllOrders(req, res, next) {
-    try {
-        const orders = await Order.query();
-        res.status(200).json({
-            status: 'success',
-            data: orders,
-            message: 'Retrieved all orders'
-        });
-    } catch(error) {
-        return next(error);
-    }
-}
+
+
+
+
+
+
+
+
+
+// async function getAllOrders(req, res, next) {
+//     try {
+//         const orders = await Order.query();
+//         res.status(200).json({
+//             status: 'success',
+//             data: orders,
+//             message: 'Retrieved all orders'
+//         });
+//     } catch(error) {
+//         return next(error);
+//     }
+// }
 
 // function getIncomingShipments(req, res, next) {
 //     db.any('SELECT * FROM "Order"').then(function (data) {
@@ -46,6 +49,6 @@ async function getAllOrders(req, res, next) {
 //     })
 // }
 
-module.exports = {
-    getAllOrders, getAllOrders,
-}
+// module.exports = {
+//     getAllOrders, getAllOrders,
+// }
