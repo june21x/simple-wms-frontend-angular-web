@@ -21,7 +21,7 @@ class Order extends Model {
     }
 }
 
-function getAllOrders(req, res, next) {
+async function getAllOrders(req, res, next) {
     try {
         const orders = await Order.query();
         res.status(200).json({
