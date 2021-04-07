@@ -42,7 +42,8 @@
     "bluebird": "^3.7.2",
     "ejs": "^3.1.6",
     "pg": "^8.5.1",
-    "pg-promise": "^10.10.1"
+    "pg-promise": "^10.10.1",
+    "typescript": "~2.3.3"
   },
   "devDependencies": {
     "@angular/language-service": "^4.2.4",
