@@ -1,4 +1,5 @@
 var express = require('express')
+var cors = require('cors')
 var path = require('path')
 var routes = require('./routes');
 
@@ -12,6 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 // 'dist' refers to 'distribution' folder, the one actually used in production
 app.use(express.static(path.join(__dirname, 'dist')));
 
+app.use(cors())
 app.use("/api", routes);
 
 app.get('/', (req, res) => {
