@@ -1,0 +1,21 @@
+<h2>DELIVERY ORDER</h2>
+
+<table>
+    <tr>
+        <th>Delivery Order ID</th>
+        <th>Delivery Method</th>
+        <th>Origin</th>
+        <th>Destination</th>
+        <th>Vendor</th>
+        <th>Arrival Time</th>
+    </tr>
+
+    <tr *ngFor="let do of deliveryOrderList">
+        <td>{{do.id}}</td>
+        <td>{{do.delivery_method}}</td>
+        <td>{{do.origin_address}}</td>
+        <td>{{do.destination_address}}</td>
+        <td>{{do.vendor_id}}</td>
+        <td>{{do.arrival_timestamp}}</td>
+    </tr>
+</table>

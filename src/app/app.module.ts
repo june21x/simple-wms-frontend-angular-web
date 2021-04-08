@@ -5,18 +5,25 @@ import { AppComponent } from './app.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+import { DeliveryOrderComponent } from './delivery-order/delivery-order.component';
+import { WarehouseComponent } from './warehouse/warehouse.component';
+import { ShipmentOrderComponent } from './shipment-order/shipment-order.component';
+import { SimpleWMSService } from './service/simple-wms.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DeliveryOrderComponent,
+    WarehouseComponent,
+    ShipmentOrderComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    HttpModule
+    HttpClientModule
   ],
-  providers: [],
+  providers: [SimpleWMSService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
