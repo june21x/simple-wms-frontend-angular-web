@@ -1,29 +1,26 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
-import { HttpClientModule } from '@angular/common/http';
-import { DeliveryOrderComponent } from './delivery-order/delivery-order.component';
-import { WarehouseComponent } from './warehouse/warehouse.component';
-import { ShipmentOrderComponent } from './shipment-order/shipment-order.component';
 import { SimpleWMSService } from './service/simple-wms.service';
+import { HttpClientModule } from '@angular/common/http';
+
+import { AppRoutingModule, routingComponents } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DeliveryOrderComponent,
-    WarehouseComponent,
-    ShipmentOrderComponent
+    routingComponents
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
-  providers: [SimpleWMSService],
+  providers: [Title, SimpleWMSService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

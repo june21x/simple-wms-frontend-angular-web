@@ -1,4 +1,10 @@
-<a>Delivery Order</a>
-<a>Warehouse</a>
-<a>Shipment Order</a>
-<delivery-order></delivery-order>
+<nav>
+    <ul>
+        <li><a routerLink="/delivery-order" routerLinkActive="active">Delivery Order</a></li>
+        <li><a routerLink="/warehouse" routerLinkActive="active">Warehouse</a></li>
+        <li><a routerLink="/shipment-order" routerLinkActive="active">Shipment Order</a></li>
+    </ul>
+</nav>
+<h2>{{subTitle}}</h2>
+<h5>{{description}}</h5>
+<router-outlet></router-outlet>
