@@ -1,5 +1,5 @@
 //const { Model, Knex } = require('../database');
-var Order = require('../models/Order');
+const Order = require('../models/Order');
 
 async function getAllOrders(req, res, next) {
     try {
@@ -11,8 +11,8 @@ async function getAllOrders(req, res, next) {
             data: orders,
             message: 'Retrieved all orders'
         });
-    } catch(error) {
-        return next(error);
+    } catch(err) {
+        return next(err);
     }
 }
 
