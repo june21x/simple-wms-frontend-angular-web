@@ -1,7 +1,7 @@
 const { Model } = require('objection');
 const Knex = require('knex');
 
-const knex = Knex({
+const database = Knex({
     client: 'pg',
     connection: {
         connectionString: process.env.DATABASE_URL,
@@ -9,9 +9,7 @@ const knex = Knex({
     }
 });
 
-Model.knex(knex);
-
-module.exports = { ObjectionModel: Model }
+module.exports = database;
 
 
 

@@ -1,6 +1,9 @@
-var database = require('../database');
+const database = require('../database');
+const { Model } = require('objection');
 
-class Order extends database.ObjectionModel {
+Model.knex(database);
+
+class Order extends Model {
 
     static get tableName() {
         return 'Order';
@@ -12,4 +15,4 @@ class Order extends database.ObjectionModel {
 
 }
 
-export { Order };
+module.exports = Order;
