@@ -1,15 +1,13 @@
 var express = require("express");
 var router = express.Router();
-var db = require('../server/database');
 
-
-var ctrlTestCrypto = require("../controllers/test.controller");
+var OrderAPIs = require('../server/api/Orders');
+var CrateAPIs = require('../server/api/Crates');
+var LabelAPIs = require('../server/api/Labels');
 
 //test
-router.get('/orders', db.getAllOrders);
-
-// router
-//   .route("/test")
-//     .get(ctrlTestCrypto.testTestCrypto)
+router.get('/orders', OrderAPIs.getAllOrders);
+router.get('/crates', CrateAPIs.getAllCrates);
+router.get('/label', LabelAPIs.getAllLabels);
 
 module.exports = router;

@@ -1,7 +1,7 @@
 const { Model } = require('objection');
 const Knex = require('knex');
 
-const knex = Knex({
+const database = Knex({
     client: 'pg',
     connection: {
         connectionString: process.env.DATABASE_URL,
@@ -9,30 +9,29 @@ const knex = Knex({
     }
 });
 
-Model.knex(knex);
+module.exports = database;
 
-class Order extends Model {
-    static get tableName() {
-        return 'Order';
-    }
 
-    static get idColumn() {
-        return 'id';
-    }
-}
 
-async function getAllOrders(req, res, next) {
-    try {
-        const orders = await Order.query();
-        res.status(200).json({
-            status: 'success',
-            data: orders,
-            message: 'Retrieved all orders'
-        });
-    } catch(error) {
-        return next(error);
-    }
-}
+
+
+
+
+
+
+
+// async function getAllOrders(req, res, next) {
+//     try {
+//         const orders = await Order.query();
+//         res.status(200).json({
+//             status: 'success',
+//             data: orders,
+//             message: 'Retrieved all orders'
+//         });
+//     } catch(error) {
+//         return next(error);
+//     }
+// }
 
 // function getIncomingShipments(req, res, next) {
 //     db.any('SELECT * FROM "Order"').then(function (data) {
@@ -46,6 +45,6 @@ async function getAllOrders(req, res, next) {
 //     })
 // }
 
-module.exports = {
-    getAllOrders, getAllOrders,
-}
+// module.exports = {
+//     getAllOrders, getAllOrders,
+// }
