@@ -3,6 +3,11 @@ import { Title } from '@angular/platform-browser';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
 
+interface Menu {
+  name: string;
+  routerLink: string;
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,6 +17,13 @@ export class AppComponent implements OnInit {
   title = 'Simple WMS';
   subTitle = '';
   description = '';
+
+  menu: Menu[] = [
+    {name: 'Warehouse', routerLink: '/warehouse'},
+    {name: 'Delivery Order', routerLink: '/delivery-order'},
+    {name: 'New Shipment', routerLink: '/shipment-order'},
+    {name: 'History', routerLink: '/history'},
+  ];
 
   constructor(private titleService: Title, private router: Router,
     private activatedRoute: ActivatedRoute) { }

@@ -1,10 +1,33 @@
-<nav>
-    <ul>
-        <li><a routerLink="/delivery-order" routerLinkActive="active">Delivery Order</a></li>
-        <li><a routerLink="/warehouse" routerLinkActive="active">Warehouse</a></li>
-        <li><a routerLink="/shipment-order" routerLinkActive="active">Shipment Order</a></li>
-    </ul>
-</nav>
-<h2>{{subTitle}}</h2>
-<h5>{{description}}</h5>
-<router-outlet></router-outlet>
+<mat-drawer-container class="main-container" autosize>
+    <mat-drawer #drawer class="main-sidenav" mode="side" opened>
+        <!-- <p>Auto-resizing sidenav</p>
+      <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+      <button (click)="showFiller = !showFiller" mat-raised-button>
+        Toggle extra text
+      </button> -->
+
+        <mat-selection-list #shoes [multiple]="false">
+            <mat-list-option *ngFor="let m of menu" [value]="m" routerLink={{m.routerLink}} routerLinkActive="active" >
+                {{m.name}}
+            </mat-list-option>
+        </mat-selection-list>
+        <!-- <nav>
+            <ul>
+                <li><a routerLink="/delivery-order" routerLinkActive="active">Delivery Order</a></li>
+                <li><a routerLink="/warehouse" routerLinkActive="active">Warehouse</a></li>
+                <li><a routerLink="/shipment-order" routerLinkActive="active">Shipment Order</a></li>
+            </ul>
+        </nav> -->
+
+    </mat-drawer>
+
+    <!-- <div class="main-sidenav-content">
+      <button type="button" mat-button (click)="drawer.toggle()">
+        Toggle sidenav
+      </button>
+    </div> -->
+    <p>simple wms</p>
+    <h2>{{subTitle}}</h2>
+    <h5>{{description}}</h5>
+    <router-outlet></router-outlet>
+</mat-drawer-container>

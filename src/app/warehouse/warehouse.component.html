@@ -1,3 +1,5 @@
-<p>
-  warehouse works!
-</p>
+<mat-grid-list cols="9" rowHeight="9">
+  <mat-grid-tile *ngFor="let p of pallets" style="background-color:rgb(52, 0, 107, {{p}})" colspan="1" rowspan="1"></mat-grid-tile>
+</mat-grid-list>
+
+<p>{{capacityPercentage.toPrecision(2)}}%</p>

@@ -1,3 +1,49 @@
-<p>
-  shipment-order works!
-</p>
+<div class="shipment-order-container">
+  <div class="form-container">
+    <form [formGroup]="shipmentOrderForm" (submit)="submit()">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> Label ID
+        </mat-label>
+        <input matInput formControlName="labelId" required>
+        <mat-error *ngIf="shipmentOrderForm.controls.labelId.touched && shipmentOrderForm.controls.labelId.invalid">
+          <span *ngIf="shipmentOrderForm.controls.labelId.errors.required">This field is mandatory.</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-divider></mat-divider>
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> Delivery Method
+        </mat-label>
+        <mat-select formControlName="deliveryMethod" name="deliveryMethod">
+          <mat-option *ngFor="let deliveryMethod of deliveryMethods" [value]="deliveryMethod.value">
+            {{deliveryMethod.viewValue}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="shipmentOrderForm.controls.deliveryMethod.touched && shipmentOrderForm.controls.deliveryMethod.invalid">
+          <span *ngIf="shipmentOrderForm.controls.deliveryMethod.errors.required">This field is mandatory.</span>
+        </mat-error>
+      </mat-form-field>
+      <!-- TODO: Origin -->
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> Destination
+        </mat-label>
+        <textarea matInput formControlName="destination" placeholder="Ex. 100 Main St"></textarea>
+        <mat-error *ngIf="shipmentOrderForm.controls.destination.touched && shipmentOrderForm.controls.destination.invalid">
+          <span *ngIf="shipmentOrderForm.controls.destination.errors.required">This field is mandatory.</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> Vendor
+        </mat-label>
+        <mat-select formControlName="vendor" name="vendor">
+          <mat-option *ngFor="let vendor of vendors" [value]="vendor.value">
+            {{vendor.viewValue}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="shipmentOrderForm.controls.vendor.touched && shipmentOrderForm.controls.vendor.invalid">
+          <span *ngIf="shipmentOrderForm.controls.vendor.errors.required">This field is mandatory.</span>
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Next</button>
+    </form>
+  </div>
+</div>
