@@ -1,14 +1,12 @@
-#mainToolbar {
-  
-}
+#mainToolbar {}
 
 #toolbarMenu {
-  cursor: pointer;
-  height: 36px;
-  width: 36px;
+  cursor     : pointer;
+  height     : 36px;
+  width      : 36px;
   margin-left: 5px;
-  font-size: 36px;
-  color: rgb(96, 106, 255);
+  font-size  : 36px;
+  color      : rgb(96, 106, 255);
 }
 
 #mainToolbar .toolbar-spacer {
@@ -16,26 +14,26 @@
 }
 
 #mainToolbar p {
-  margin-bottom: 0;
-  margin-right: 30px;
+  margin-bottom : 0;
+  margin-right  : 30px;
   padding-bottom: 5px;
-  font-family: 'Exo 2', sans-serif;
-  font-weight: 500;
-  color: rgba(0, 0, 0, 0.3);
+  font-family   : 'Exo 2', sans-serif;
+  font-weight   : 500;
+  color         : rgba(0, 0, 0, 0.3);
 }
 
 #mainToolbar img {
   margin-right: 10px;
-  height: 28px;
+  height      : 28px;
 }
 
 #sidenavContainer {
-  height: 91%;
+  height: 100%;
 }
 
 #sidenav {
-  height: 110%;
-  width: 240px;
+  height          : 100%;
+  width           : 240px;
   background-color: rgb(96, 106, 255);
 }
 
@@ -47,27 +45,11 @@
   width: 240px;
 }
 
-#sidenav .mat-list {
-  height: 100%;
-}
-
-#sidenav .mat-list-item-content {
-  padding: 0px;
-}
-
 #sidenav .menu-item {
-  width: 100%;
-  border-radius: 0;
-  text-align: left;
-  padding: 10px;
+  width           : 100%;
+  text-align      : left;
   background-color: rgb(96, 106, 255);
-  color: #eee;
-  
-}
-
-#sidenav .menu-item {
-  padding: 20px;
-  padding-left: 0;
+  color           : #eee;
 }
 
 #sidenav .menu-item:hover {
@@ -75,22 +57,16 @@
 }
 
 #sidenav .menu-item mat-icon {
-  margin-right: 20px;
-  margin-left: 15px;
-  height: fit-content;
-  width: fit-content;
-  padding: 0;
-  font-size: 48px;
-  display: inline-block;
-  margin-top: auto;
-  margin-bottom: auto;
+  margin-left: 0px;
+  height     : fit-content;
+  width      : fit-content;
+  padding    : 0;
+  font-size  : 44px;
 }
 
 #sidenav .menu-item p {
-  margin-top: auto;
-  margin-bottom: auto;
-  font-size: 12px;
-  display: inline-block;
+  font-family: 'Exo 2', 'sans-serif';
+  font-size: 14px;
 }
 
 .mat-sidenav-content {
@@ -99,17 +75,18 @@
 
 h1 {
   font-family: 'Exo 2', sans-serif;
-  font-size: 32px;
-  color: rgba(0, 0, 0, 0.4);
+  font-size  : 32px;
+  color      : rgba(0, 0, 0, 0.4);
   font-weight: 500;
-  width: fit-content;
+  width      : fit-content;
 }
 
 h4 {
-  color: rgba(96, 106, 255, 0.75);
+  color      : rgba(96, 106, 255, 0.75);
   font-weight: 500;
-  font-style: italic;
+  font-style : italic;
 }
 
 #pageContent {
+  padding-bottom: 100px;
 }

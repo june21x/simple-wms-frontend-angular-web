@@ -3,19 +3,21 @@ import { Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DeliveryOrder } from '../model/delivery-order';
 import { catchError, tap, map } from 'rxjs/operators';
+import { createClassifier } from 'typescript';
 
 @Injectable()
 export class SimpleWMSService {
   private baseURL = 'https://simplewms.herokuapp.com/api';
   private deliveryOrdersURL = 'orders';
   private palletsURL = 'pallets';
+  private cratesURL = 'crates';
 
   constructor(private httpClient: HttpClient) { }
 
   getDeliveryOrderList(): Observable<any> {
     return this.httpClient.get(`${this.baseURL}/${this.deliveryOrdersURL}`)
       .pipe(
-        tap(response => console.log(JSON.stringify(response))),
+        tap(response => console.log(response)),
         catchError(this.handleError)
       );
   }
@@ -23,9 +25,17 @@ export class SimpleWMSService {
   getPalletList(): Observable<any> {
     return this.httpClient.get(`${this.baseURL}/${this.palletsURL}`)
       .pipe(
-        tap(response => console.log(JSON.stringify(response))),
+        tap(response => console.log(response)),
         catchError(this.handleError)
       );
+  }
+  
+  assignPalletID(crateId, data): Observable<any> {
+    return this.httpClient.post(`${this.baseURL}/${this.cratesURL}/${crateId}/assign/auto`, data);
+  }
+
+  assignLabelID(crateId, data): Observable<any> {
+    return this.httpClient.post(`${this.baseURL}/${this.cratesURL}/${crateId}/linklabel/auto`, data);
   }
 
   // getCratebyCrateId(crateId: number): Observable<any> {

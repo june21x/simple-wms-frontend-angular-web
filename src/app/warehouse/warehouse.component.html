@@ -1,6 +1,6 @@
-<div class="capacity-container">
+<div class="capacity-container" matTooltip={{capacityToString()}} matTooltipPosition="left">
   <h5>Capacity</h5>
-  <p>{{getCapacity().toFixed(2)}}%</p>
+  <p>{{getCapacityPercentage()}}%</p>
 </div>
 <div class="warehouse-container">
   <div class="pallets-container">
@@ -19,6 +19,6 @@
     </mat-grid-list>
   </div>
   <div class="warehouse-controller">
-    <mat-slide-toggle [(ngModel)]="showCrates">Show Crates</mat-slide-toggle>
+    <mat-slide-toggle [(ngModel)]="showCrates">SHOW CRATES</mat-slide-toggle>
   </div>
 </div>

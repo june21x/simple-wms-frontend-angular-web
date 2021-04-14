@@ -12,6 +12,7 @@ import { SimpleWMSService } from '../service/simple-wms.service';
 
 export class WarehouseComponent implements OnInit {
   palletList = new Array<Pallet>();
+  maxCratesPerPallet = 4;
   showCrates = false;
 
   constructor(private _apiService: SimpleWMSService) {}
@@ -44,35 +45,64 @@ export class WarehouseComponent implements OnInit {
     )
   }
 
-  getCapacity(): number {
-    var totalCrates = 0;
+  getTotalCrates() {
+    let totalCrates = 0;
 
     this.palletList.forEach(pallet => {
       totalCrates += pallet.getTotalCrates();
     });
 
-    const totalPallet = 81;
-    const maxCratesPerPallet = 4;
-    var capacity = (totalCrates / (totalPallet * maxCratesPerPallet) ) * 100;
-    return capacity;
+    return totalCrates;
   }
 
-  getCapacityColor(): string {
-    var color;
-    var capacity = this.getCapacity();
-    var r: number;
-    var g;
-    var b;
-    // 0 204 0
-    // 102 204 0
-    // 204 204 0
-    // 204 102 0
-    // 204 0 0
-    if(capacity > 0 && capacity < 50) {
-      
-    }
+  getTotalPallets() {
+    return this.palletList.length;
+  }
 
-    return color;
+  getTotalCrateSlots() {
+    return this.getTotalPallets() * this.maxCratesPerPallet;
+  }
+
+  getCapacityFraction() {
+    return `${this.getTotalCrates()}/${this.getTotalCrateSlots()}`;
+  }
+
+  getCapacityPercentage() {
+    return ((this.getTotalCrates() / this.getTotalCrateSlots()) * 100).toFixed(2);
+  }
+
+  getTotalPalletsUtilized() {
+    let totalPalletsUtilized = 0;
+    this.palletList.forEach(pallet => {
+      if(pallet.getTotalCrates() > 0) {
+        totalPalletsUtilized ++;
+      } 
+    });
+
+    return totalPalletsUtilized;
+  }
+
+  getTotalPalletsUnutilized() {
+    let totalPalletsUnutilized = 0;
+
+    this.palletList.forEach(pallet => {
+      if(pallet.getTotalCrates() == 0) {
+        totalPalletsUnutilized ++;
+      } 
+    });
+
+    return totalPalletsUnutilized;
+  }
+
+  getCapacityColor() {
+
+  }
+
+  capacityToString() {
+    return `Total Pallets:            ${this.getTotalPallets()}
+            Total Pallets Utilized:   ${this.getTotalPalletsUtilized()}
+            Total Pallets Unutilized: ${this.getTotalPalletsUnutilized()}
+            Total Crates:             ${this.getCapacityFraction()}`;
   }
 
   onPalletClick(pallet: Pallet) {

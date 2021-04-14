@@ -48,7 +48,6 @@ export class DeliveryOrderComponent implements OnInit, AfterViewInit{
               default: return deliveryOrder[property];
             }
           };
-          console.log(this.deliveryOrderList[0].getArrivalDate());
         },
         error => {
           console.log(error);

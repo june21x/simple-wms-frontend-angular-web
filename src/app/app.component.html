@@ -6,20 +6,19 @@
 </mat-toolbar>
 
 <mat-sidenav-container id="sidenavContainer">
-  <mat-sidenav #sidenav id="sidenav" mode="side" [class.menu-open] ="isMenuOpen" [class.menu-close]="!isMenuOpen" opened>
+  <mat-sidenav #sidenav id="sidenav" mode="side" [class.menu-open]="isMenuOpen" [class.menu-close]="!isMenuOpen" opened>
     <!-- <p>Auto-resizing sidenav</p>
       <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
       <button (click)="showFiller = !showFiller" mat-raised-button>
         Toggle extra text
       </button> -->
-    <div mat-list>
-      <div mat-list-item *ngFor="let menu of menuList" routerLink={{menu.routerLink}} routerLinkActive="active">
-        <button class="menu-item" mat-flat-button>
-          <mat-icon matTooltip={{menu.name}} matTooltipPosition="below">{{menu.icon}}</mat-icon>
-          <p>{{menu.name}}</p>
-        </button>
-      </div>
-    </div>
+    <mat-nav-list>
+      <a mat-list-item *ngFor="let menu of menuList" routerLink={{menu.routerLink}} routerLinkActive
+        #rla="routerLinkActive" [ngStyle]="{'color': rla.isActive ? 'rgb(46, 56, 205)' : 'white'}" class="menu-item">
+        <mat-icon mat-list-icon matTooltip={{menu.name}} matTooltipPosition="below">{{menu.icon}}</mat-icon>
+        <p matLine>{{menu.name.toUpperCase()}}</p>
+      </a>
+    </mat-nav-list>
   </mat-sidenav>
 
   <!-- <div class="main-sidenav-content">
