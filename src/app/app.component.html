@@ -1,33 +1,35 @@
-<mat-drawer-container class="main-container" autosize>
-    <mat-drawer #drawer class="main-sidenav" mode="side" opened>
-        <!-- <p>Auto-resizing sidenav</p>
+<mat-toolbar id="mainToolbar">
+  <mat-icon (click)="onToolbarMenuToggle()" id="toolbarMenu">subject</mat-icon>
+  <span class="toolbar-spacer"></span>
+  <img src="../assets/wooden-crate.svg" alt="Simple WMS" />
+  <p>{{title.toLowerCase()}}</p>
+</mat-toolbar>
+
+<mat-sidenav-container id="sidenavContainer">
+  <mat-sidenav #sidenav id="sidenav" mode="side" [class.menu-open] ="isMenuOpen" [class.menu-close]="!isMenuOpen" opened>
+    <!-- <p>Auto-resizing sidenav</p>
       <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
       <button (click)="showFiller = !showFiller" mat-raised-button>
         Toggle extra text
       </button> -->
+    <div mat-list>
+      <div mat-list-item *ngFor="let menu of menuList" routerLink={{menu.routerLink}} routerLinkActive="active">
+        <button class="menu-item" mat-flat-button>
+          <mat-icon matTooltip={{menu.name}} matTooltipPosition="below">{{menu.icon}}</mat-icon>
+          <p>{{menu.name}}</p>
+        </button>
+      </div>
+    </div>
+  </mat-sidenav>
 
-        <mat-selection-list #shoes [multiple]="false">
-            <mat-list-option *ngFor="let m of menu" [value]="m" routerLink={{m.routerLink}} routerLinkActive="active" >
-                {{m.name}}
-            </mat-list-option>
-        </mat-selection-list>
-        <!-- <nav>
-            <ul>
-                <li><a routerLink="/delivery-order" routerLinkActive="active">Delivery Order</a></li>
-                <li><a routerLink="/warehouse" routerLinkActive="active">Warehouse</a></li>
-                <li><a routerLink="/shipment-order" routerLinkActive="active">Shipment Order</a></li>
-            </ul>
-        </nav> -->
-
-    </mat-drawer>
-
-    <!-- <div class="main-sidenav-content">
+  <!-- <div class="main-sidenav-content">
       <button type="button" mat-button (click)="drawer.toggle()">
         Toggle sidenav
       </button>
     </div> -->
-    <p>simple wms</p>
-    <h2>{{subTitle}}</h2>
-    <h5>{{description}}</h5>
-    <router-outlet></router-outlet>
-</mat-drawer-container>
+  <mat-sidenav-content [ngStyle]="{ 'margin-left.px': contentMargin }">
+    <h1>{{subTitle}}</h1>
+    <h4>{{description}}</h4>
+    <router-outlet id="pageContent"></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

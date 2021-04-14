@@ -18,7 +18,13 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
@@ -44,6 +50,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatSidenavModule,
     MatListModule,
     MatTableModule,
+    MatSortModule,
+    MatSlideToggleModule,
+    MatIconModule,
+    FlexLayoutModule,
+    MatToolbarModule,
+    MatTooltipModule
   ],
   providers: [Title, SimpleWMSService],
   bootstrap: [AppComponent]

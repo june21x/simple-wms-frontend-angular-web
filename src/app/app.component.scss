@@ -1,0 +1,115 @@
+#mainToolbar {
+  
+}
+
+#toolbarMenu {
+  cursor: pointer;
+  height: 36px;
+  width: 36px;
+  margin-left: 5px;
+  font-size: 36px;
+  color: rgb(96, 106, 255);
+}
+
+#mainToolbar .toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+#mainToolbar p {
+  margin-bottom: 0;
+  margin-right: 30px;
+  padding-bottom: 5px;
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+#mainToolbar img {
+  margin-right: 10px;
+  height: 28px;
+}
+
+#sidenavContainer {
+  height: 91%;
+}
+
+#sidenav {
+  height: 110%;
+  width: 240px;
+  background-color: rgb(96, 106, 255);
+}
+
+#sidenav.menu-close {
+  width: 80px;
+}
+
+#sidenav.menu-open {
+  width: 240px;
+}
+
+#sidenav .mat-list {
+  height: 100%;
+}
+
+#sidenav .mat-list-item-content {
+  padding: 0px;
+}
+
+#sidenav .menu-item {
+  width: 100%;
+  border-radius: 0;
+  text-align: left;
+  padding: 10px;
+  background-color: rgb(96, 106, 255);
+  color: #eee;
+  
+}
+
+#sidenav .menu-item {
+  padding: 20px;
+  padding-left: 0;
+}
+
+#sidenav .menu-item:hover {
+  color: rgb(46, 56, 205);
+}
+
+#sidenav .menu-item mat-icon {
+  margin-right: 20px;
+  margin-left: 15px;
+  height: fit-content;
+  width: fit-content;
+  padding: 0;
+  font-size: 48px;
+  display: inline-block;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+#sidenav .menu-item p {
+  margin-top: auto;
+  margin-bottom: auto;
+  font-size: 12px;
+  display: inline-block;
+}
+
+.mat-sidenav-content {
+  padding: 30px;
+}
+
+h1 {
+  font-family: 'Exo 2', sans-serif;
+  font-size: 32px;
+  color: rgba(0, 0, 0, 0.4);
+  font-weight: 500;
+  width: fit-content;
+}
+
+h4 {
+  color: rgba(96, 106, 255, 0.75);
+  font-weight: 500;
+  font-style: italic;
+}
+
+#pageContent {
+}

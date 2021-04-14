@@ -1,5 +1,24 @@
-<mat-grid-list cols="9" rowHeight="9">
-  <mat-grid-tile *ngFor="let p of pallets" style="background-color:rgb(52, 0, 107, {{p}})" colspan="1" rowspan="1"></mat-grid-tile>
-</mat-grid-list>
-
-<p>{{capacityPercentage.toPrecision(2)}}%</p>
+<div class="capacity-container">
+  <h5>Capacity</h5>
+  <p>{{getCapacity().toFixed(2)}}%</p>
+</div>
+<div class="warehouse-container">
+  <div class="pallets-container">
+    <mat-grid-list cols="9" gutterSize="10">
+      <mat-grid-tile *ngFor="let pallet of palletList" [matTooltip]="showCrates ? null : pallet.toString()"
+        (click)="onPalletClick(pallet)" [style.background]="pallet.getDisplayColor()" colspan="1" rowspan="1">
+        <div class="crates" *ngIf="showCrates; else hideCrates">
+          <mat-grid-list cols="2" gutterSize="5">
+            <mat-grid-tile *ngFor="let crate of pallet.crates" matTooltip={{crate.toString()}}
+              (click)="onCrateClick(crate)" [style.background]="crate.getDisplayColor()" colspan="1" rowspan="1">
+            </mat-grid-tile>
+          </mat-grid-list>
+        </div>
+        <ng-template #hideCrates></ng-template>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div class="warehouse-controller">
+    <mat-slide-toggle [(ngModel)]="showCrates">Show Crates</mat-slide-toggle>
+  </div>
+</div>

@@ -14,7 +14,7 @@ interface Vendor {
 @Component({
   selector: 'shipment-order',
   templateUrl: './shipment-order.component.html',
-  styleUrls: ['./shipment-order.component.css']
+  styleUrls: ['./shipment-order.component.scss']
 })
 
 export class ShipmentOrderComponent implements OnInit {

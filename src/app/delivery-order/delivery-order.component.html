@@ -19,7 +19,7 @@
     </tr>
 </table> -->
 
-<mat-table [dataSource]="deliveryOrderList" class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
     <!-- <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
     <th mat-header-cell *matHeaderCellDef> {{column}} </th>
     <td mat-cell *matCellDef="let deliveryOrder"> {{deliveryOrder[column]}} </td>
@@ -27,44 +27,44 @@
 
     <!-- Delivery Order ID Column -->
     <ng-container matColumnDef="{{columnsToDisplay[0]}}">
-        <mat-header-cell *matHeaderCellDef> Delivery Order ID </mat-header-cell>
-        <mat-cell *matCellDef="let deliveryOrder"> {{deliveryOrder.id}} </mat-cell>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let deliveryOrder"> {{deliveryOrder.id}} </td>
     </ng-container>
 
     <!-- Delivery Method Column -->
     <ng-container matColumnDef="{{columnsToDisplay[1]}}">
-        <mat-header-cell *matHeaderCellDef> Delivery Method </mat-header-cell>
-        <mat-cell *matCellDef="let deliveryOrder"> {{deliveryOrder.deliveryMethod}} </mat-cell>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Delivery Method </th>
+        <td mat-cell *matCellDef="let deliveryOrder"> {{deliveryOrder.deliveryMethod}} </td>
     </ng-container>
 
     <!-- Origin Column -->
     <ng-container matColumnDef="{{columnsToDisplay[2]}}">
-        <mat-header-cell *matHeaderCellDef> Origin </mat-header-cell>
-        <mat-cell *matCellDef="let deliveryOrder"> {{deliveryOrder.origin}} </mat-cell>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Origin </th>
+        <td mat-cell *matCellDef="let deliveryOrder"> {{deliveryOrder.origin}} </td>
     </ng-container>
 
     <!-- Destination Column -->
     <ng-container matColumnDef="{{columnsToDisplay[3]}}">
-        <mat-header-cell *matHeaderCellDef> Destination </mat-header-cell>
-        <mat-cell *matCellDef="let deliveryOrder"> {{deliveryOrder.destination}} </mat-cell>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Destination </th>
+        <td mat-cell *matCellDef="let deliveryOrder"> {{deliveryOrder.destination}} </td>
     </ng-container>
 
     <!-- Vendor Column -->
     <ng-container matColumnDef="{{columnsToDisplay[4]}}">
-        <mat-header-cell *matHeaderCellDef> Vendor </mat-header-cell>
-        <mat-cell *matCellDef="let deliveryOrder"> {{deliveryOrder.vendorId}} </mat-cell>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Vendor </th>
+        <td mat-cell *matCellDef="let deliveryOrder"> {{deliveryOrder.vendorId}} </td>
     </ng-container>
 
     <!-- Arrival Date & Time Column -->
     <ng-container matColumnDef="{{columnsToDisplay[5]}}">
-        <mat-header-cell *matHeaderCellDef> Arrival Date & Time </mat-header-cell>
-        <mat-cell *matCellDef="let deliveryOrder"> {{deliveryOrder.getArrivalDate()}} </mat-cell>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Arrival Date & Time </th>
+        <td mat-cell *matCellDef="let deliveryOrder"> {{deliveryOrder.getArrivalDateTimeString()}} </td>
     </ng-container>
 
     <!-- Action -->
     <ng-container matColumnDef="{{columnsToDisplay[6]}}">
-        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
-        <mat-cell *matCellDef="let deliveryOrder"> <button mat-raised-button color="primary"> Receive & Label </button> </mat-cell>
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let deliveryOrder"> <button mat-raised-button color="primary"> Receive & Label </button> </td>
     </ng-container>
 
     <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
@@ -86,11 +86,11 @@
     </td>
   </ng-container> -->
 
-    <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
-    <mat-row *matRowDef="let deliveryOrder; columns: columnsToDisplay;"></mat-row>
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let deliveryOrder; columns: columnsToDisplay;"></tr>
     <!-- class="example-element-row"
       [class.example-expanded-row]="expandedDeliveryOrder === deliveryOrder"
       (click)="expandedElement = expandedDeliveryOrder === deliveryOrder ? null : deliveryOrder"></mat-row>
   </mat-row>
   <mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></mat-row> -->
-</mat-table>
+</table>

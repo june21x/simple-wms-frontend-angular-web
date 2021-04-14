@@ -12,8 +12,12 @@ export class DeliveryOrder {
     @JsonProperty('tracking') trackingId: string;
     @JsonProperty('notes') note: string;
 
-    getArrivalDate(): string {
-        var date = new Date(this.arrivalTimestamp).toTimeString();
+    getArrivalDate(): Date {
+        var date = new Date(this.arrivalTimestamp);
         return date;
+    }
+
+    getArrivalDateTimeString(): string {
+        return `${this.getArrivalDate().toDateString()} ${this.getArrivalDate().toLocaleTimeString()}`;
     }
 }

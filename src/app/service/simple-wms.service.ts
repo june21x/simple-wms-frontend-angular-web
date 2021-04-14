@@ -6,13 +6,22 @@ import { catchError, tap, map } from 'rxjs/operators';
 
 @Injectable()
 export class SimpleWMSService {
-  private baseURL = 'https://simplewms.herokuapp.com';
-  private deliveryOrdersURL = 'api/orders';
+  private baseURL = 'https://simplewms.herokuapp.com/api';
+  private deliveryOrdersURL = 'orders';
+  private palletsURL = 'pallets';
 
   constructor(private httpClient: HttpClient) { }
 
   getDeliveryOrderList(): Observable<any> {
     return this.httpClient.get(`${this.baseURL}/${this.deliveryOrdersURL}`)
+      .pipe(
+        tap(response => console.log(JSON.stringify(response))),
+        catchError(this.handleError)
+      );
+  }
+
+  getPalletList(): Observable<any> {
+    return this.httpClient.get(`${this.baseURL}/${this.palletsURL}`)
       .pipe(
         tap(response => console.log(JSON.stringify(response))),
         catchError(this.handleError)
