@@ -1,0 +1,19 @@
+.form {
+  width: 100%;
+}
+.form-element {
+  width: 100%;
+}
+
+.mat-option.option-checkbox-wrap {
+  padding: 0;
+}
+
+.mat-option.option-checkbox-wrap .mat-checkbox {
+  padding: 0 16px;
+}
+
+
+.mat-option:first-child {
+    background: rgba(0,0,0,.04);
+}

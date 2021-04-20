@@ -1,25 +1,47 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { DeliveryOrder } from '../model/delivery-order';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
-import { createClassifier } from 'typescript';
 
 @Injectable()
 export class SimpleWMSService {
   private baseURL = 'https://simplewms.herokuapp.com/api';
-  private deliveryOrdersURL = 'orders';
+  private ordersURL = 'orders';
   private palletsURL = 'pallets';
   private cratesURL = 'crates';
+  private vendorsURL = 'vendors';
 
   constructor(private httpClient: HttpClient) { }
 
-  getDeliveryOrderList(): Observable<any> {
-    return this.httpClient.get(`${this.baseURL}/${this.deliveryOrdersURL}`)
+  getAllOrderList(): Observable<any> {
+    return this.httpClient.get(`${this.baseURL}/${this.ordersURL}/unified`)
       .pipe(
         tap(response => console.log(response)),
         catchError(this.handleError)
       );
+  }
+
+  getDeliveryOrderList(): Observable<any> {
+    return this.httpClient.get(`${this.baseURL}/${this.ordersURL}/delivery`)
+      .pipe(
+        tap(response => console.log(response)),
+        catchError(this.handleError)
+      );
+  }
+
+  getCrateList(): Observable<any> {
+    return this.httpClient.get(`${this.baseURL}/${this.cratesURL}`)
+      .pipe(
+        tap(response => console.log(response)),
+        catchError(this.handleError)
+      );
+  }
+
+  getCrateListByDeliveryOrderId(orderId: number): Observable<any> {
+    return this.httpClient.get(`${this.baseURL}/${this.ordersURL}/${orderId}/crates`).pipe(
+      tap(response => console.log(response)),
+      catchError(this.handleError)
+    )
   }
 
   getPalletList(): Observable<any> {
@@ -29,30 +51,40 @@ export class SimpleWMSService {
         catchError(this.handleError)
       );
   }
-  
-  assignPalletID(crateId, data): Observable<any> {
-    return this.httpClient.post(`${this.baseURL}/${this.cratesURL}/${crateId}/assign/auto`, data);
+
+  getAllVendorList(): Observable<any> {
+    return this.httpClient.get(`${this.baseURL}/${this.vendorsURL}`).pipe(
+      tap(response => console.log(response)),
+      catchError(this.handleError)
+    );
   }
 
-  assignLabelID(crateId, data): Observable<any> {
+  getVendorByDeliveryOrderId(orderId: number): Observable<any> {
+    return this.httpClient.get(`${this.baseURL}/${this.ordersURL}/${orderId}/vendor`).pipe(
+      tap(response => console.log(response)),
+      catchError(this.handleError)
+    )
+  }
+  
+  autoAssignPalletId(crateId): Observable<any> {
+    return this.httpClient.post(`${this.baseURL}/${this.cratesURL}/${crateId}/assign/auto`, null);
+  }
+
+  removeCratesFromPallets(data): Observable<any> {
+    return this.httpClient.post(`${this.baseURL}/${this.cratesURL}/removefrompallet`, data);
+  }
+
+  autoAssignLabelId(crateId, data): Observable<any> {
     return this.httpClient.post(`${this.baseURL}/${this.cratesURL}/${crateId}/linklabel/auto`, data);
   }
 
-  // getCratebyCrateId(crateId: number): Observable<any> {
-  //   return this.httpClient.get(`https://simplewms.herokuapp.com/api/crate/${crateId}`);
-  // }
+  linkShipmentOrderId(shipmentId, data): Observable<any> {
+    return this.httpClient.post(`${this.baseURL}/${this.cratesURL}/linkshipment/${shipmentId}`, data, {responseType: 'text'});
+  }
 
-  // getCratebyDeliveryOrderId(deliveryOrderId: number): Observable<any> {
-  //   return this.httpClient.get(`https://simplewms.herokuapp.com/api/crate/findByDeliveryOrderId/?deliveryOrderId=${deliveryOrderId}`);
-  // }
-
-  // getCratebyLabelId(labelId: number): Observable<any> {
-  //   return this.httpClient.get(`https://simplewms.herokuapp.com/api/crate/findByLabelId/?labelId=${labelId}`);
-  // }
-
-  // getCratebyPalletId(palletId: number): Observable<any> {
-  //   return this.httpClient.get(`https://simplewms.herokuapp.com/api/crate/findByPalletId/?palletId=${palletId}`);
-  // }
+  createNewShipmentOrder(data): Observable<any> {
+    return this.httpClient.post(`${this.baseURL}/${this.ordersURL}/insert`, data);
+  }
 
   private handleError(err) {
     // in a real world app, we may send the server to some remote logging infrastructure

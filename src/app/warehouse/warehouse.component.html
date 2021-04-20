@@ -6,11 +6,11 @@
   <div class="pallets-container">
     <mat-grid-list cols="9" gutterSize="10">
       <mat-grid-tile *ngFor="let pallet of palletList" [matTooltip]="showCrates ? null : pallet.toString()"
-        (click)="onPalletClick(pallet)" [style.background]="pallet.getDisplayColor()" colspan="1" rowspan="1">
+        [style.background]="pallet.getDisplayColor()" colspan="1" rowspan="1">
         <div class="crates" *ngIf="showCrates; else hideCrates">
           <mat-grid-list cols="2" gutterSize="5">
             <mat-grid-tile *ngFor="let crate of pallet.crates" matTooltip={{crate.toString()}}
-              (click)="onCrateClick(crate)" [style.background]="crate.getDisplayColor()" colspan="1" rowspan="1">
+              [style.background]="crate.getDisplayColor()" colspan="1" rowspan="1">
             </mat-grid-tile>
           </mat-grid-list>
         </div>

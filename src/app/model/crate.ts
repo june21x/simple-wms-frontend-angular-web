@@ -1,3 +1,4 @@
+import { identifierModuleUrl } from "@angular/compiler";
 import { JsonProperty, Serializable } from "typescript-json-serializer";
 
 @Serializable()
@@ -8,6 +9,7 @@ export class Crate {
     @JsonProperty('value') value: string;
     @JsonProperty('quantity') quantity: number;
     @JsonProperty('label_id') labelId: number;
+    @JsonProperty('pallet_id') palletId: number;
 
     getDisplayColor() {
         return 'rgb(222, 123, 42, 1)'; // Ochre Color
@@ -23,6 +25,8 @@ export class Crate {
                 SKU:          ${this.sku}
                 Total Weight: ${this.getTotalWeightInKg()}kg
                 Value:        ${this.value}
-                Quantity:     ${this.quantity}`
+                Quantity:     ${this.quantity}
+                Pallet ID:    ${this.palletId}`
     }
+
 }

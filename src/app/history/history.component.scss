@@ -1,0 +1,35 @@
+.table-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.table-container h2 {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+table {
+    width: 100%;
+  }
+
+  tr.student-detail-row {
+    height: 0;
+  }
+  
+  tr.student-element-row:not(.student-expanded-row):hover, tr.student-element-row:hover {
+    background: whitesmoke;
+    cursor: pointer;
+  }
+  
+  tr.student-element-row:not(.student-expanded-row):active {
+    background: #efefef;
+  }
+  
+  .student-element-row td {
+    border-bottom-width: 0;
+  }
+
+  .example-element-detail {
+    overflow: hidden;
+    display: flex;
+    align-content: space-between;
+  }

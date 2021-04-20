@@ -11,3 +11,52 @@
 .form-field{
     display: block
 }
+
+.button {
+    width: 120px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.review-container {
+    text-align: left;
+}
+
+.review-container div {
+    display: flex;
+    align-content: space-around;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.review-container div div {
+    display: block;
+}
+
+.review-container h4, .submitted-container h4 {
+    min-width: 300px;
+    color: rgb(96, 106, 255);
+}
+
+.review-container p, .submitted-container p {
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: 500;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.submitted-container {
+    padding: 10px;
+    text-align: left;
+}
+
+.submitted-container div {
+    display: flex;
+    align-content: space-around;
+}
+
+.submitted-container h2 {
+    min-width: 300px;
+    color: rgb(96, 106, 255);
+}

@@ -33,6 +33,7 @@
     "@angular/platform-browser": "^11.2.9",
     "@angular/platform-browser-dynamic": "^11.2.9",
     "@angular/router": "^11.2.9",
+    "chip-autocomplete": "^1.0.6",
     "core-js": "^2.4.1",
     "cors": "^2.8.5",
     "ejs": "^3.1.6",

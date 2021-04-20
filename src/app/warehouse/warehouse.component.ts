@@ -37,7 +37,6 @@ export class WarehouseComponent implements OnInit {
 
         })
         this.palletList = deserializedPalletList; //saves deserialized Pallet list into binding property
-        console.log(this.palletList);
       },
       error => {
         console.log(error);
@@ -103,14 +102,6 @@ export class WarehouseComponent implements OnInit {
             Total Pallets Utilized:   ${this.getTotalPalletsUtilized()}
             Total Pallets Unutilized: ${this.getTotalPalletsUnutilized()}
             Total Crates:             ${this.getCapacityFraction()}`;
-  }
-
-  onPalletClick(pallet: Pallet) {
-    console.log(`Pallet Location: (${pallet.x}, ${pallet.y})`);
-  }
-
-  onCrateClick(crate: Crate) {
-    console.log(`Crate ID: ${crate.id}\nCrate SKU: ${crate.sku}`);
   }
 
 }

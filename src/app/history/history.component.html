@@ -1,1 +1,145 @@
-<p>We are currently working on this page, stay tuned!</p>
+<div class="table-container">
+    <h2>ASSIGNED DELIVERY ORDER</h2>
+
+    <table mat-table [dataSource]="deliveryOrderDataSource" matSort multiTemplateDataRows class="mat-elevation-z8">
+        <!-- Delivery Order ID Column -->
+        <ng-container matColumnDef="{{deliveryOrderColumns[0]}}">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+            <td mat-cell *matCellDef="let deliveryOrder"> {{deliveryOrder?.repId}} </td>
+        </ng-container>
+
+        <!-- Delivery Method Column -->
+        <ng-container matColumnDef="{{deliveryOrderColumns[1]}}">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Delivery Method </th>
+            <td mat-cell *matCellDef="let deliveryOrder"> {{deliveryOrder?.deliveryMethod}} </td>
+        </ng-container>
+        I
+        <!-- Origin Column -->
+        <ng-container matColumnDef="{{deliveryOrderColumns[2]}}">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Origin </th>
+            <td mat-cell *matCellDef="let deliveryOrder"> {{deliveryOrder?.origin}} </td>
+        </ng-container>
+
+        <!-- Destination Column -->
+        <ng-container matColumnDef="{{deliveryOrderColumns[3]}}">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Destination </th>
+            <td mat-cell *matCellDef="let deliveryOrder"> {{deliveryOrder?.destination}} </td>
+        </ng-container>
+
+        <!-- Vendor Column -->
+        <ng-container matColumnDef="{{deliveryOrderColumns[4]}}">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Vendor </th>
+            <td mat-cell *matCellDef="let deliveryOrder"> {{deliveryOrder?.vendor?.name}} </td>
+        </ng-container>
+
+        <!-- Arrival Date & Time Column -->
+        <ng-container matColumnDef="{{deliveryOrderColumns[5]}}">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Arrival Date & Time </th>
+            <td mat-cell *matCellDef="let deliveryOrder"> {{deliveryOrder?.getArrivalDateTimeString()}} </td>
+        </ng-container>
+
+        <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+        <ng-container matColumnDef="expandedDeliveryOrderDetail">
+            <td mat-cell *matCellDef="let deliveryOrder" [attr.colspan]="deliveryOrderColumns.length">
+
+                <div class="example-element-detail"
+                    [@detailExpand]="deliveryOrder.isExpanded ? 'expanded' : 'collapsed'">
+                    <mat-list>
+                        <mat-list-item *ngFor="let crate of deliveryOrder.crates">
+                            <div mat-line>SKU: {{crate?.sku}}</div>
+                            <div mat-line>Label ID: {{crate?.labelId}}</div>
+                            <div mat-line>Total Weight: {{crate?.weight}}</div>
+                            <div mat-line>Value: {{crate?.value}}</div>
+                            <div mat-line>Quantity: {{crate?.quantity}}</div>
+                            <div mat-line>Pallet ID: {{crate?.palletId}}</div>
+                            <div mat-subheader>Crate ID: {{crate?.id}}</div>
+                        </mat-list-item>
+                    </mat-list>
+                </div>
+
+            </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="deliveryOrderColumns"></tr>
+        <tr mat-row *matRowDef="let deliveryOrder; columns: deliveryOrderColumns;" class="student-element-row"
+            [class.student-expanded-row]="deliveryOrder.isExpanded"
+            (click)="deliveryOrder.isExpanded = deliveryOrder.isExpanded ? false : true"></tr>
+
+        <tr mat-row *matRowDef="let row; columns: ['expandedDeliveryOrderDetail']" class="student-detail-row"></tr>
+
+    </table>
+</div>
+
+<div class="table-container">
+    <h2>ISSUED SHIPMENT ORDER</h2>
+
+    <table mat-table [dataSource]="shipmentOrderDataSource" matSort multiTemplateDataRows class="mat-elevation-z8">
+        <!-- Delivery Order ID Column -->
+        <ng-container matColumnDef="{{shipmentOrderColumns[0]}}">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+            <td mat-cell *matCellDef="let shipmentOrder"> {{shipmentOrder?.repId}} </td>
+        </ng-container>
+
+        <!-- Delivery Method Column -->
+        <ng-container matColumnDef="{{shipmentOrderColumns[1]}}">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Delivery Method </th>
+            <td mat-cell *matCellDef="let shipmentOrder"> {{shipmentOrder?.deliveryMethod}} </td>
+        </ng-container>
+        I
+        <!-- Origin Column -->
+        <ng-container matColumnDef="{{shipmentOrderColumns[2]}}">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Origin </th>
+            <td mat-cell *matCellDef="let shipmentOrder"> {{shipmentOrder?.origin}} </td>
+        </ng-container>
+
+        <!-- Destination Column -->
+        <ng-container matColumnDef="{{shipmentOrderColumns[3]}}">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Destination </th>
+            <td mat-cell *matCellDef="let shipmentOrder"> {{shipmentOrder?.destination}} </td>
+        </ng-container>
+
+        <!-- Vendor Column -->
+        <ng-container matColumnDef="{{shipmentOrderColumns[4]}}">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Vendor </th>
+            <td mat-cell *matCellDef="let shipmentOrder"> {{shipmentOrder?.vendor?.name}} </td>
+        </ng-container>
+
+        <!-- Arrival Date & Time Column -->
+        <ng-container matColumnDef="{{shipmentOrderColumns[5]}}">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Departure Date & Time </th>
+            <td mat-cell *matCellDef="let shipmentOrder"> {{shipmentOrder?.getDepartureDateTimeString()}} </td>
+        </ng-container>
+
+        <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+        <ng-container matColumnDef="expandedShipmentOrderDetail">
+            <td mat-cell *matCellDef="let shipmentOrder" [attr.colspan]="shipmentOrderColumns.length">
+
+                <div class="example-element-detail"
+                    [@detailExpand]="shipmentOrder.isExpanded ? 'expanded' : 'collapsed'">
+                    <mat-list>
+                        <mat-list-item *ngFor="let crate of shipmentOrder.crates">
+                            <div mat-subheader>Crate ID: {{crate?.id}}</div>
+                            <div mat-line>SKU: {{crate?.sku}}</div>
+                            <div mat-line>Label ID: {{crate?.labelId}}</div>
+                            <div mat-line>Total Weight: {{crate?.weight}}</div>
+                            <div mat-line>Value: {{crate?.value}}</div>
+                            <div mat-line>Quantity: {{crate?.quantity}}</div>
+                            <div mat-line>Pallet ID: {{crate?.palletId}}</div>
+                        </mat-list-item>
+                    </mat-list>
+                </div>
+
+            </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="shipmentOrderColumns"></tr>
+        <tr mat-row *matRowDef="let shipmentOrder; columns: shipmentOrderColumns;" class="student-element-row"
+            [class.student-expanded-row]="shipmentOrder.isExpanded"
+            (click)="shipmentOrder.isExpanded = shipmentOrder.isExpanded ? false : true"></tr>
+
+        <tr mat-row *matRowDef="let row; columns: ['expandedShipmentOrderDetail']" class="student-detail-row"></tr>
+
+    </table>
+</div>
