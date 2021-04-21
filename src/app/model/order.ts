@@ -1,4 +1,4 @@
-import { JsonProperty, Serializable, deserialize, serialize } from 'typescript-json-serializer';
+import { JsonProperty, Serializable } from 'typescript-json-serializer';
 import { Crate } from './crate';
 import { Label } from './label';
 import { Transaction } from './transaction';
@@ -58,11 +58,26 @@ export class Order {
         return `${this.getDepartureDate().toDateString()} ${this.getDepartureDate().toLocaleTimeString()}`;
     }
 
+    isCrateAssignedBefore(): boolean {
+        var totalAssigned = 0;
+        this.crates?.forEach(crate => {
+            totalAssigned += (crate?.palletId != null)?  1 : 0;
+        });
+
+        console.log(`id = ${this.id}, repId = ${this.repId}, type = ${this.type}, crates.length = ${this.crates.length}, totalAssigned = ${totalAssigned}`);
+
+        return (totalAssigned > 0) ? true : false;
+    }
+
     isAllCratesAssigned(): boolean {
         var totalAssigned = 0;
         this.crates?.forEach(crate => {
             totalAssigned += (crate?.palletId != null)?  1 : 0;
-        })
-        return (totalAssigned < this.crates.length) ? true : false;
+        });
+
+        console.log(`id = ${this.id}, repId = ${this.repId}, type = ${this.type}, crates.length = ${this.crates.length}, totalAssigned = ${totalAssigned}`);
+       
+        return (totalAssigned == this.crates.length) ? true : false;
     }
+
 }

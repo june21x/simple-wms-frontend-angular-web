@@ -9,7 +9,7 @@
           <ng-template matStepLabel>Fill in the shipment order details</ng-template>
 
           <!-- Crate IDs -->
-          <my-chip-autocomplete [placeholder]="placeholder" formControlName="crates"
+          <my-chip-autocomplete [placeholder]="placeholder" formControlName="crates" [form]="shipmentOrderForm" [hasError]="hasError"
             [clientSideFilter]="clientsideFilter" [options]="crateList" [maxItems]="maxCrate" [removable]="removable"
             [isChipAddFromInput]="isChipAddFromInput" [required]="required" [displayWith]="displayWith"
             [itemId]="itemid" [isOptionCheckable]="isOptionCheckable" [disabledSelected]="disabledSelected">
@@ -83,13 +83,17 @@
               <h4>Crates</h4>
               <div *ngFor="let crate of selectedCrateList">
                 <p mat-chip>ID: {{crate?.id}}</p>
-                <p>SKU:&#9;&#9;{{crate?.sku}}</p>
-                <p>Label ID:&#9;&#9;{{crate?.labelId}}</p>
-                <p>Total Weight:&#9;&#9;{{crate?.weight}}</p>
-                <p>Value:&#9;&#9;{{crate?.value}}</p>
-                <p>Quantity:&#9;&#9;{{crate?.quantity}}</p>
-                <p>Pallet ID:&#9;&#9;{{crate?.palletId}}</p>
+                <p>SKU: {{crate?.sku}}</p>
+                <p>Label ID:{{crate?.labelId}}</p>
+                <p>Total Weight: {{crate?.weight}}</p>
+                <p>Total Value: {{crate?.getTotalValue()}}</p>
+                <p>Quantity: {{crate?.quantity}}</p>
+                <p>Pallet ID: {{crate?.palletId}}</p>
               </div>
+            </div>
+            <div>
+              <h4>Total Value</h4>
+              <p>$ {{totalValue.toFixed(2)}}</p>
             </div>
             <div>
               <h4>Origin</h4>

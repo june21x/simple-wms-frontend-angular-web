@@ -28,6 +28,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -70,6 +71,7 @@ import { MyChipAutocompleteComponent } from './my-chip-autocomplete/my-chip-auto
     ChipAutocompleteModule,
     MatStepperModule,
     MatSnackBarModule,
+    MatProgressBarModule,
   ],
   providers: [Title, SimpleWMSService],
   bootstrap: [AppComponent]

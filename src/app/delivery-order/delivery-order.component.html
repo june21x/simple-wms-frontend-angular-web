@@ -1,3 +1,4 @@
+
 <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows class="mat-elevation-z8">
     <!-- Delivery Order ID Column -->
     <ng-container matColumnDef="{{columnsToDisplay[0]}}">
@@ -39,7 +40,7 @@
     <ng-container matColumnDef="{{columnsToDisplay[6]}}">
         <th mat-header-cell *matHeaderCellDef> Action </th>
         <td mat-cell *matCellDef="let deliveryOrder"> <button mat-raised-button color="primary"
-                (click)="receiveAndLabel(deliveryOrder)"> Receive & Label </button> </td>
+                (click)="receive(deliveryOrder)"> Receive </button> </td>
     </ng-container>
 
     <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
@@ -48,13 +49,14 @@
 
             <div class="example-element-detail"
                 [@detailExpand]="deliveryOrder.isExpanded ? 'expanded' : 'collapsed'">
+                <div>Transaction Value: {{deliveryOrder?.transaction?.value}}</div>
                 <mat-list>
                     <mat-list-item *ngFor="let crate of deliveryOrder.crates">
                         <div mat-subheader>Crate ID: {{crate?.id}}</div>
                         <div mat-line>SKU: {{crate?.sku}}</div>
                         <div mat-line>Label ID: {{crate?.labelId}}</div>
                         <div mat-line>Total Weight: {{crate?.weight}}</div>
-                        <div mat-line>Value: {{crate?.value}}</div>
+                        <div mat-line>Total Value: {{crate?.getTotalValue()}}</div>
                         <div mat-line>Quantity: {{crate?.quantity}}</div>
                     </mat-list-item>
                 </mat-list>

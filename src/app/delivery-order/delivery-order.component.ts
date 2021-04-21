@@ -25,11 +25,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   ],
 })
 export class DeliveryOrderComponent implements OnInit, AfterViewInit {
+  orderList = [];
   deliveryOrderList = [];
   dataSource = new MatTableDataSource<Order>();
   columnsToDisplay = ['repId', 'deliveryMethod', 'origin', 'destination', 'vendor', 'arrivalTimestamp', 'action'];
   expandedDeliveryOrder: Crate | null;
   @ViewChild(MatSort) sort: MatSort;
+
+  crateIdList = [];
 
   durationInSeconds = 5;
   deliveryOrderRepId: string;
@@ -70,13 +73,16 @@ export class DeliveryOrderComponent implements OnInit, AfterViewInit {
             // Deserialize Transaction
             deserializedOrder.transaction = deserialize<Transaction>(order['transaction'][0], Transaction);
 
-            this.deliveryOrderList.push(deserializedOrder);
+            this.orderList.push(deserializedOrder);
           });
 
-          this.deliveryOrderList = this.deliveryOrderList.filter((order: Order) => {
+          this.deliveryOrderList = this.orderList.filter((order: Order) => {
             // Filter unassigned delivery order
-            return order?.type === 'delivery' && order?.isAllCratesAssigned() === false && order?.crates?.length > 0;
+            return order?.type === 'delivery' && order?.isCrateAssignedBefore() === false && order?.crates?.length > 0;
           });
+
+          console.log('Filtered delivery list :');
+          console.log(this.deliveryOrderList);
 
           this.dataSource.data = this.deliveryOrderList;
           this.dataSource.sortingDataAccessor = (deliveryOrder, property) => {
@@ -92,30 +98,27 @@ export class DeliveryOrderComponent implements OnInit, AfterViewInit {
       )
   }
 
-  receiveAndLabel(deliveryOrder: Order) {
-    this._apiService.getCrateListByDeliveryOrderId(deliveryOrder?.id)
-      .subscribe(
-        response => {
-          console.log('Start Assigning');
-          response.forEach(crate => {
-            let deserializedCrate = deserialize<Crate>(crate, Crate);
-            this.assignPallet(deserializedCrate?.id);
-            console.log(`Crate ${deserializedCrate?.id} is assigned to pallets.`);
-          });
-          this.deliveryOrderRepId = deliveryOrder.repId;
-          // TODO place this after done all assignPallet
-          this.openSnackBar(`The crates from Delivery Order ${this.deliveryOrderRepId} has been labelled and assigned to warehouse!`, 'Go to History');
-        }, error => {
-          console.error(error);
-        });
+  receive(deliveryOrder: Order) {
+    console.log('Start Assigning');
+
+    deliveryOrder.crates.forEach(crate => {
+      let deserializedCrate = deserialize<Crate>(crate, Crate);
+      this.crateIdList.push(deserializedCrate?.id);
+    });
+
+    this.assignPallet(this.crateIdList);
+
+    this.deliveryOrderRepId = deliveryOrder.repId;
+
   }
 
-  assignPallet(crateId: number) {
-    this._apiService.autoAssignPalletId(crateId)
+  assignPallet(crateIdList: string[]) {
+    console.log(crateIdList);
+    this._apiService.autoMultipleAssignPalletId(crateIdList)
       .subscribe(response => {
         console.log(response);
-        
-
+        this.openSnackBar(`The crates from Delivery Order ${this.deliveryOrderRepId} has been assigned to warehouse!`, 'Go to History');
+        // this.getAllDeliveryOrders();
       }, error => {
         console.log(error);
       });

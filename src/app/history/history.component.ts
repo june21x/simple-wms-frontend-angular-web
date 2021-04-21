@@ -72,12 +72,12 @@ export class HistoryComponent implements OnInit, AfterViewInit {
 
           this.deliveryOrderList = this.orderList.filter((order: Order) => {
             // Filter assigned delivery order
-            return order?.type === 'delivery' && order?.isAllCratesAssigned() === true && order?.crates?.length > 0;
+            return order?.type === 'delivery' && order?.isCrateAssignedBefore() === true && order?.crates?.length > 0;
           });
 
           this.shipmentOrderList = this.orderList.filter((order: Order) => {
-            // Filter assigned delivery order
-            return order?.type === 'shipment' && order?.isAllCratesAssigned() === true && order?.crates?.length > 0;
+            // Filter issued shipment order
+            return order?.type === 'shipment' && order?.isAllCratesAssigned() === false && order?.crates?.length > 0;
           });
 
           this.deliveryOrderDataSource.data = this.deliveryOrderList;
@@ -97,8 +97,8 @@ export class HistoryComponent implements OnInit, AfterViewInit {
             }
           };
 
-          console.log(`Delivery Orders: ${this.deliveryOrderList}`);
-          console.log(`Shipment Orders: ${this.shipmentOrderList}`);
+          console.log(`Assigned Delivery Orders: ${this.deliveryOrderList}`);
+          console.log(`Issued Shipment Orders: ${this.shipmentOrderList}`);
         },
         error => {
           console.error(error);

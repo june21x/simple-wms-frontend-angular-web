@@ -33,6 +33,8 @@ export class MyChipAutocompleteComponent implements OnInit, ControlValueAccessor
   @Input() debounceTime = 500;
   @Input() isChipAddFromInput = false;
   @Input() isOptionCheckable = false;
+  @Input() form: FormGroup;
+  @Input() hasError: boolean;
   @Output() changeSearchkey = new EventEmitter<string>();
   @ViewChild('input', { static: false }) input: ElementRef<HTMLInputElement>;
   @ViewChild(MatAutocomplete, { static: true }) matAutocomplete: MatAutocomplete;
@@ -40,7 +42,7 @@ export class MyChipAutocompleteComponent implements OnInit, ControlValueAccessor
   separatorKeysCodes: number[] = [13, 9]
   onTouch: any = () => { };
   onChange: any = () => { };
-  form: FormGroup;
+  
   filteredOptions: any;
   disabled = false;
   debounceHelper = new Subject();
@@ -67,6 +69,7 @@ export class MyChipAutocompleteComponent implements OnInit, ControlValueAccessor
       }
     }
   }
+
   get control() {
     return this.form.get('control');
   }

@@ -93,6 +93,17 @@ export class WarehouseComponent implements OnInit {
     return totalPalletsUnutilized;
   }
 
+  getTotalValue() {
+    let totalValue = 0;
+    this.palletList.forEach(
+      pallet => {
+        totalValue += parseFloat(pallet.getTotalValue().substring(2));
+      }
+    )
+
+    return `$ ${totalValue.toFixed(2)}`;
+  }
+
   getCapacityColor() {
 
   }
@@ -101,7 +112,8 @@ export class WarehouseComponent implements OnInit {
     return `Total Pallets:            ${this.getTotalPallets()}
             Total Pallets Utilized:   ${this.getTotalPalletsUtilized()}
             Total Pallets Unutilized: ${this.getTotalPalletsUnutilized()}
-            Total Crates:             ${this.getCapacityFraction()}`;
+            Total Crates:             ${this.getCapacityFraction()}
+            Total Value:              ${this.getTotalValue()}`;
   }
 
 }

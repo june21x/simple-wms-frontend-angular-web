@@ -9,13 +9,19 @@
 }
 
 .form-field{
-    display: block
+    display: block;
+    width: 50%;
 }
 
 .button {
     width: 120px;
     margin-left: 50px;
     margin-right: 50px;
+}
+
+.mat-divider {
+    margin-bottom: 40px;
+    margin-top: 20px;
 }
 
 .review-container {

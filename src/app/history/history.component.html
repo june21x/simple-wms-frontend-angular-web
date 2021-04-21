@@ -44,12 +44,13 @@
 
                 <div class="example-element-detail"
                     [@detailExpand]="deliveryOrder.isExpanded ? 'expanded' : 'collapsed'">
+                    <div>Transaction Value: {{deliveryOrder?.transaction?.value}}</div>
                     <mat-list>
                         <mat-list-item *ngFor="let crate of deliveryOrder.crates">
                             <div mat-line>SKU: {{crate?.sku}}</div>
                             <div mat-line>Label ID: {{crate?.labelId}}</div>
                             <div mat-line>Total Weight: {{crate?.weight}}</div>
-                            <div mat-line>Value: {{crate?.value}}</div>
+                            <div mat-line>Total Value: {{crate?.getTotalValue()}}</div>
                             <div mat-line>Quantity: {{crate?.quantity}}</div>
                             <div mat-line>Pallet ID: {{crate?.palletId}}</div>
                             <div mat-subheader>Crate ID: {{crate?.id}}</div>
@@ -117,15 +118,15 @@
 
                 <div class="example-element-detail"
                     [@detailExpand]="shipmentOrder.isExpanded ? 'expanded' : 'collapsed'">
+                    <div>Transaction Value: {{shipmentOrder?.transaction?.value}}</div>
                     <mat-list>
                         <mat-list-item *ngFor="let crate of shipmentOrder.crates">
                             <div mat-subheader>Crate ID: {{crate?.id}}</div>
                             <div mat-line>SKU: {{crate?.sku}}</div>
                             <div mat-line>Label ID: {{crate?.labelId}}</div>
                             <div mat-line>Total Weight: {{crate?.weight}}</div>
-                            <div mat-line>Value: {{crate?.value}}</div>
+                            <div mat-line>Total Value: {{crate?.getTotalValue()}}</div>
                             <div mat-line>Quantity: {{crate?.quantity}}</div>
-                            <div mat-line>Pallet ID: {{crate?.palletId}}</div>
                         </mat-list-item>
                     </mat-list>
                 </div>

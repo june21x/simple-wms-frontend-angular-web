@@ -10,6 +10,7 @@ export class SimpleWMSService {
   private palletsURL = 'pallets';
   private cratesURL = 'crates';
   private vendorsURL = 'vendors';
+  private transactionsURL = 'transactions';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -70,20 +71,36 @@ export class SimpleWMSService {
     return this.httpClient.post(`${this.baseURL}/${this.cratesURL}/${crateId}/assign/auto`, null);
   }
 
+  autoMultipleAssignPalletId(crateIdList: string[]): Observable<any> {
+    return this.httpClient.post(`${this.baseURL}/${this.cratesURL}/assignmultiple/auto`, crateIdList);
+  }
+
   removeCratesFromPallets(data): Observable<any> {
-    return this.httpClient.post(`${this.baseURL}/${this.cratesURL}/removefrompallet`, data);
+    return this.httpClient.post(`${this.baseURL}/${this.cratesURL}/removefrompallet`, data, {responseType: 'text'});
   }
 
   autoAssignLabelId(crateId, data): Observable<any> {
     return this.httpClient.post(`${this.baseURL}/${this.cratesURL}/${crateId}/linklabel/auto`, data);
   }
 
-  linkShipmentOrderId(shipmentId, data): Observable<any> {
+  linkCrateShipmentOrderId(shipmentId, data): Observable<any> {
     return this.httpClient.post(`${this.baseURL}/${this.cratesURL}/linkshipment/${shipmentId}`, data, {responseType: 'text'});
+  }
+
+  linkVendorShipmentOrderId(vendorId, shipmentId): Observable<any> {
+    return this.httpClient.post(`${this.baseURL}/${this.vendorsURL}/${vendorId}/linkorder/${shipmentId}`, null, {responseType: 'text'});
   }
 
   createNewShipmentOrder(data): Observable<any> {
     return this.httpClient.post(`${this.baseURL}/${this.ordersURL}/insert`, data);
+  }
+
+  createNewTransaction(data): Observable<any> {
+    return this.httpClient.post(`${this.baseURL}/${this.transactionsURL}/insert`, data);
+  }
+
+  linkTransactionShipmentOrderId(transactionId, shipmentId): Observable<any> {
+    return this.httpClient.post(`${this.baseURL}/${this.transactionsURL}/${transactionId}/linkorder/${shipmentId}`, null, {responseType: 'text'});
   }
 
   private handleError(err) {

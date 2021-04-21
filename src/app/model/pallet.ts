@@ -23,6 +23,16 @@ export class Pallet {
         return this.totalWeight / 1000;
     }
 
+    getTotalValue() {
+        let totalValue = 0.00;
+
+        this.crates.forEach(crate => {
+           totalValue += parseFloat(crate.getTotalValue().substring(2));
+        })
+
+        return `$ ${totalValue.toFixed(2)}`;
+    }
+
     getDisplayColor() {
         const purple = 'rgb(66, 11, 150, ';
         let alpha: number;
@@ -55,6 +65,7 @@ export class Pallet {
         return `Pallet ID:    ${this.id}
                 Location:     [${this.x}, ${this.y}]
                 Total Weight: ${this.getTotalWeightInKg()}kg
+                Total Value:  ${this.getTotalValue()}
                 Capacity:     ${this.getTotalCrates()}/${maxCrates}`;
     }
 
